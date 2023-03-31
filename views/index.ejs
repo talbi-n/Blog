@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<%- include('./partials/head.ejs') %>
+
+
+  <body>
+    <%- include('./partials/nav.ejs') %>
+
+
+      <h1 class="center">ALL Blogs </h1>
+
+      <div class="container_form">
+        <% if(blogs.length>0){ %>
+
+
+          <% blogs.forEach (blog=> { %>
+            <a href="/blogs/<%= blog._id %>">
+              <div class="blogsContainer">
+                <h4 class="div-inline">
+                  <%= blog.title %> :
+                </h4>
+                <p class="div-inline">
+                  <%= blog.content %>
+                </p>
+                <hr>
+              </div>
+            </a>
+          <% }) %>
+
+              <% } else { %>
+                <h3 class="center">nothing to show</h3>
+                <% } %>
+
+
+      </div>
+
+
+
+
+
+
+  </body>
+
+</html>

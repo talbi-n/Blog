@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<%- include('./partials/head.ejs') %>
+
+
+    <body>
+        <%- include('./partials/nav.ejs') %>
+
+
+            <h1>Index page</h1>
+            <p>this is index page </p>
+            <div>
+
+
+                <h3>
+                    <%=blog.title%>
+                </h3>
+                <h3>
+                    <%= blog.content%>
+                </h3>
+                <a class="delete" data-doc="<%= blog._id %>">delete</a>
+
+
+
+
+            </div>
+
+
+            <script>
+                const transh = document.querySelector('a.delete')
+                transh.addEventListener('click', (e) => {
+                    const endpoint = `/blogs/${transh.dataset.doc}`
+                    fetch(endpoint, { method: 'DELETE' })
+                        .then(response=> { console.log("***********response"); response.json() })
+                        .then(data=> { console.log("data"); window.location.href = data.redirect })
+                        .catch(err=> console.log(err))
+                })
+            </script>
+             <script>
+                const trashcan = document.querySelector('a.delete');
+                trashcan.addEventListener('click', (e) => {
+                  const endpoint = `/blogs/${trashcan.dataset.doc}`;
+                  fetch(endpoint, {
+                    method: 'DELETE',
+                  })
+                  .then(response => response.json())
+                  .then(data => window.location.href = data.redirect)
+                  .catch(err => console.log(err));
+                });
+                
+              </script>
+
+          
+
+    </body>
+
+</html>
